@@ -1,17 +1,14 @@
 #!/bin/bash
 set -e
+echo "*************************** IN ENV DIR **************************";
 
-# Application name from Dockerfile ARG
-export EXPORT_DIR="/SavedExportDir"
+export EXPORT_DIR="/SymmetricdsApp/ExportDir"
 
 mkdir -p $EXPORT_DIR
 
 # Path to SymmetricDS
-export SYM_HOME="/symmetricds"
+export SYM_HOME="/SymmetricdsApp/symmetricds"
 export PATH=$PATH:$SYM_HOME/bin
 
-# JDBC drivers
-export CLASSPATH=$SYM_HOME/lib/*
-
-# H2 Docker container access
-export H2_JDBC="jdbc:h2:mem:db"
+envsubst < /SymmetricdsApp/symmetricds/engines/pg.properties.template > /SymmetricdsApp/symmetricds/engines/pg.properties
+envsubst < /SymmetricdsApp/symmetricds/engines/sqlite.properties.template > /SymmetricdsApp/symmetricds/engines/sqlite.properties

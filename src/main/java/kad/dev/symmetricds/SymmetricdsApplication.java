@@ -16,7 +16,7 @@ public class SymmetricdsApplication {
     }
 
 
-    /*@Bean
+    @Bean
     CommandLineRunner commandLineRunner(Repo repo) {
         return args -> {
             List<Client> clients = List.of(
@@ -32,5 +32,5 @@ public class SymmetricdsApplication {
             );
             repo.saveAll(clients);
         };
-    }*/
+    }
 }

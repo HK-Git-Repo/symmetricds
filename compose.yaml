@@ -1,13 +1,29 @@
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        application_name: myApp
-    container_name: my_app
+
+  pg:
+    container_name: pg-symmetricds-store
+    image: 'postgres:latest'
     environment:
-      - APP_NAME=myApp
-      - ./h2data:/opt/h2data
+      - 'POSTGRES_DB=mydb'
+      - 'POSTGRES_USER=admin'
+      - 'POSTGRES_PASSWORD=admin'
+    ports:
+      - '5432:5432'
+    networks:
+      - symmetricds-network
+
+  app:
+    build: .
+    container_name: symmetricds-app
+    environment:
+      - URL_DB=jdbc:postgresql://pg-symmetricds-store:5432/mydb
     ports:
       - "8080:8080"
+    depends_on:
+      - pg
+    networks:
+      - symmetricds-network
+
+networks:
+  symmetricds-network:
+    driver: bridge

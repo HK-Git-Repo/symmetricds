@@ -1,0 +1,5 @@
+engine.name=pg_engine
+db.driver=org.postgresql.Driver
+db.url=$URL_DB
+db.user=admin
+db.password=admin
