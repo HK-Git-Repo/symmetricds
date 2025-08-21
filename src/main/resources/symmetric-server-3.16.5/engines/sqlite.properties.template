@@ -1,3 +1,6 @@
 engine.name=sqlite_engine
+
 db.driver=org.sqlite.JDBC
-db.url=jdbc:sqlite:${EXPORT_DIR}/${TABLE_NAME}.sqlite
+db.url=jdbc:sqlite:$EXPORT_DIR/$TABLE_NAME.sqlite
+db.user=
+db.password=

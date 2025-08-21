@@ -2,7 +2,7 @@ FROM openjdk:17-slim
 
 WORKDIR /SymmetricdsApp
 # Install required packages
-RUN apt-get update && apt-get install -y sqlite3 && apt-get install gettext-base
+RUN apt-get update && apt-get install -y sqlite3 && apt-get install gettext-base && apt-get install -y postgresql-client
 
 # Copy SymmetricDS
 COPY src/main/resources/symmetric-server-3.16.5 symmetricds
