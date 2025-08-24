@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y sqlite3 && apt-get install gettext-base
 # Copy SymmetricDS
 COPY src/main/resources/symmetric-server-3.16.5 symmetricds
 # Optionally install sq (with auto-yes)
-RUN yes | /bin/sh -c "$(curl -fsSL https://sq.io/install.sh)"
+#RUN yes | /bin/sh -c "$(curl -fsSL https://sq.io/install.sh)"
 
 # Copy Spring Boot app
 COPY target/symmetricds*.jar app.jar

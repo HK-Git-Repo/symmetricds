@@ -33,4 +33,6 @@ dbimport --engine sqlite_engine \
   --table "$TABLE_NAME" \
    "$EXPORT_DIR/$TABLE_NAME.csv"
 
-echo "✅ Done. File saved at: $EXPORT_DIR/${TABLE_NAME}.sqlite"
+echo "Done. File saved at: $EXPORT_DIR/${TABLE_NAME}.sqlite"
+cd $EXPORT_DIR
+ls -l

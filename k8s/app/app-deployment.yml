@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+  namespace: dev
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: symmetricds
+  template:
+    metadata:
+      labels:
+        app: symmetricds
+    spec:
+      containers:
+        - name: symmetricds-app
+          image: symmetricds-app:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: URL_DB
+              valueFrom:
+                configMapKeyRef:
+                  key: pg-url
+                  name: pg-config
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  key: pg-username
+                  name: pg-secret
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: pg-password
+                  name: pg-secret
+            - name: EXPORT_DIR
+              value: /SymmetricdsApp/ExportDir
+          volumeMounts:
+            - mountPath: /SymmetricdsApp/ExportDir
+              name: nfs
+      volumes:
+        - name: nfs
+          persistentVolumeClaim:
+            claimName: nfs

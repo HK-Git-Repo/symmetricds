@@ -2,9 +2,9 @@
 set -e
 echo "*************************** IN ENV DIR **************************";
 
-export EXPORT_DIR="/SymmetricdsApp/ExportDir"
+#export EXPORT_DIR="/SymmetricdsApp/ExportDir"
 
-mkdir -p $EXPORT_DIR
+mkdir -p $EXPORT_DIR # has persisted value from Kube
 
 # Path to SymmetricDS
 export SYM_HOME="/SymmetricdsApp/symmetricds"
